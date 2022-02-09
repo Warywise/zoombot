@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import Reminder from './components/Reminder';
+import TimerContext from './context/TimerContext';
 
 function App() {
+  const { time } = useContext(TimerContext);
   return (
-    <div className="App">
+    <main className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        Trybe Moments Bot
       </header>
-    </div>
+      <section>
+        <h2>{ time }</h2>
+        <Reminder />
+      </section>
+    </main>
   );
 }
 
