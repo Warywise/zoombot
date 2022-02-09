@@ -4,6 +4,8 @@ import TimerContext from './TimerContext';
 
 export default function TimerProvider({ children }) {
   const [time, setTime] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
     const ONE_SECOND = 1000;
@@ -15,8 +17,10 @@ export default function TimerProvider({ children }) {
     return () => clearInterval(intervalId);
   }, []);
 
+  const contextValues = { time, meetings, setMeetings };
+
   return (
-    <TimerContext.Provider value={ { time } }>
+    <TimerContext.Provider value={ contextValues }>
       { children }
     </TimerContext.Provider>
   );
