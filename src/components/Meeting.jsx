@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
