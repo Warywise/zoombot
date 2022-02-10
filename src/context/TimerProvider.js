@@ -8,25 +8,12 @@ export default function TimerProvider({ children }) {
 
   useEffect(() => {
     const TEN_SECONDS = 10000;
-    const MAX_SECOND = 50;
-    const MAX_SECOND_HIDDEN = 29;
     let intervalId;
-    let newTime;
 
     const interval = () => {
       const getTime = new Date().toLocaleTimeString();
-      const timeContent = (getTime).match(/\d+/g);
 
-      if (document.hidden) {
-        newTime = Number(timeContent[2]) >= MAX_SECOND_HIDDEN
-          ? { hour: timeContent[0], minute: `${Number(timeContent[1]) + 1}` }
-          : { hour: timeContent[0], minute: timeContent[1] };
-      } else {
-        newTime = Number(timeContent[2]) >= MAX_SECOND
-          ? { hour: timeContent[0], minute: `${Number(timeContent[1]) + 1}` }
-          : { hour: timeContent[0], minute: timeContent[1] };
-      }
-      setTime(newTime);
+      setTime(getTime);
       intervalId = window.setTimeout(interval, TEN_SECONDS);
 
       console.log((getTime).match(/\d+/g), document.hidden);
