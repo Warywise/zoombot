@@ -25,7 +25,7 @@ export default function Reminder() {
       {'Horário: '}
       <input
         type="text"
-        placeholder="hh:mm:ss"
+        placeholder=" hh : mm"
         value={ meetingTime }
         onChange={ ({ target }) => setMeetingTime(target.value) }
       />
@@ -34,7 +34,7 @@ export default function Reminder() {
       {'Titulo: '}
       <input
         type="text"
-        placeholder="Minha reunião"
+        placeholder=" Minha reunião"
         value={ meetingTitle }
         onChange={ ({ target }) => setMeetingTitle(target.value) }
       />
@@ -43,7 +43,7 @@ export default function Reminder() {
       {'Link: '}
       <input
         type="text"
-        placeholder="https://link.example.com"
+        placeholder=" https://link.example.com"
         value={ meetingLink }
         onChange={ ({ target }) => setMeetingLink(target.value) }
       />

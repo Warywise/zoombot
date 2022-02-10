@@ -1,10 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
 
 export default function Meeting({ meetData: { time, title, link } }) {
   const { time: currentTime } = useContext(TimerContext);
+  const [checked, setChecked] = useState(false);
+
+  const isMeetingChecked = () => {
+    if (checked) return false;
+
+    const timeContent = (time).match(/\d+/g);
+    const itsTime = +(currentTime.hour) === +(timeContent[0])
+      && +(currentTime.minute) === +(timeContent[1]);
+
+    if (itsTime) {
+      setChecked(true);
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div>
       { title
@@ -14,7 +30,7 @@ export default function Meeting({ meetData: { time, title, link } }) {
         : `O evento foi marcado
           para o horário de ${time} e seguirá
           o seguinte link: "${link}"` }
-      <Redirector redirect={ currentTime === time } url={ link } />
+      <Redirector redirect={ isMeetingChecked() } url={ link } />
     </div>
   );
 }
