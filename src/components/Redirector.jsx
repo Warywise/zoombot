@@ -21,7 +21,6 @@ class Redirector extends React.Component {
         rel="noreferrer"
       >
         { redirect && this.simulateClick() }
-        Click
       </a>);
   }
 }
