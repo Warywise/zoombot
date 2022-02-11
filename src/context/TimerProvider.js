@@ -5,6 +5,7 @@ import TimerContext from './TimerContext';
 export default function TimerProvider({ children }) {
   const [time, setTime] = useState('');
   const [meetings, setMeetings] = useState([]);
+  const [checkedMeetings, setCheckedMeetings] = useState([]);
 
   useEffect(() => {
     const TEN_SECONDS = 10000;
@@ -16,7 +17,7 @@ export default function TimerProvider({ children }) {
       setTime(getTime);
       intervalId = window.setTimeout(interval, TEN_SECONDS);
 
-      console.log((getTime).match(/\d+/g), document.hidden);
+      // console.log((getTime).match(/\d+/g), document.hidden);
     };
 
     interval();
@@ -24,7 +25,13 @@ export default function TimerProvider({ children }) {
     return () => clearInterval(intervalId);
   }, []);
 
-  const contextValues = { time, meetings, setMeetings };
+  const contextValues = {
+    time,
+    meetings,
+    setMeetings,
+    checkedMeetings,
+    setCheckedMeetings,
+  };
 
   return (
     <TimerContext.Provider value={ contextValues }>

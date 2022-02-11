@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
 
 export default function Meeting({ meetData: { time, title, link } }) {
-  const { time: currentTime } = useContext(TimerContext);
+  const { time: currentTime, meetings, setMeetings,
+    checkedMeetings, setCheckedMeetings } = useContext(TimerContext);
   const [condition, setCondition] = useState({ redirect: false, checked: false });
 
   const isMeetingChecked = () => {
@@ -26,11 +28,6 @@ export default function Meeting({ meetData: { time, title, link } }) {
     }
   }, [currentTime]);
 
-  useEffect(() => {
-    const { checked, redirect } = condition;
-    if (checked && redirect) setCondition({ redirect: false, checked: true });
-  }, [condition.checked]);
-
   return (
     <div className="meeting">
       { title
@@ -50,7 +47,13 @@ export default function Meeting({ meetData: { time, title, link } }) {
             e seguirá o seguinte link:
             <b>{` "${link}"`}</b>
           </p>) }
-      <Redirector redirect={ condition.redirect } url={ link } />
+      <Redirector
+        redirect={ condition.redirect }
+        url={ link }
+        meetings={ meetings }
+        setMeetings={ setMeetings }
+        time={ time }
+      />
     </div>
   );
 }
