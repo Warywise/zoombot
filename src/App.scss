@@ -18,6 +18,20 @@
   width: 100%;
 }
 
+.meeting {
+  border: solid thin #282c34;
+  color: #1a1a1b;
+  font-size: large;
+  letter-spacing: 0.5px;
+  margin: 8px 0;
+  max-width: calc(30vw + 3vmin);
+  padding: 5px 8px;
+
+  b {
+    color: #0d0f13;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

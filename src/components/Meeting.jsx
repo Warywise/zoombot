@@ -32,14 +32,24 @@ export default function Meeting({ meetData: { time, title, link } }) {
   }, [condition.checked]);
 
   return (
-    <div>
+    <div className="meeting">
       { title
-        ? `O evento "${title}", foi marcado
-          para o horário de ${time} e seguirá
-          o seguinte link: "${link}"`
-        : `O evento foi marcado
-          para o horário de ${time} e seguirá
-          o seguinte link: "${link}"` }
+        ? (
+          <p>
+            O evento
+            <b>{` "${title}"`}</b>
+            , foi marcado para o horário de
+            <b>{` "${time}h" `}</b>
+            e seguirá o seguinte link:
+            <b>{` "${link}"`}</b>
+          </p>)
+        : (
+          <p>
+            O evento foi marcado para o horário de
+            <b>{` "${time}h" `}</b>
+            e seguirá o seguinte link:
+            <b>{` "${link}"`}</b>
+          </p>) }
       <Redirector redirect={ condition.redirect } url={ link } />
     </div>
   );
