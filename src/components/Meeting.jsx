@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FaWindowClose } from 'react-icons/fa';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
 
@@ -11,12 +12,16 @@ export default function Meeting({ meetData: { time, title, link } }) {
     if (condition.checked) return false;
 
     const timeContent = (time).match(/\d+/g);
-
     const itsTime = currentTime.hour === timeContent[0]
       && currentTime.minute === timeContent[1];
 
     if (itsTime) return true;
     return false;
+  };
+
+  const deleteMeeting = () => {
+    const newMeetingsArray = [...meetings].filter((meet) => meet.time !== time);
+    setMeetings(newMeetingsArray);
   };
 
   useEffect(() => {
@@ -51,6 +56,9 @@ export default function Meeting({ meetData: { time, title, link } }) {
         setMeetings={ setMeetings }
         time={ time }
       />
+      <button type="button" onClick={ deleteMeeting }>
+        <FaWindowClose className="delete-btn" size="1.5em" color="red" />
+      </button>
     </div>
   );
 }

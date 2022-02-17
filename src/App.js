@@ -10,12 +10,12 @@ function App() {
   return (
     <main className="App">
       <header className="App-header">
-        Trybe Moments Bot
+        Moments Click Bot
       </header>
       <section>
         <h2>
           { time.hour }
-          <b>{' : '}</b>
+          <b className="time-dots">{' : '}</b>
           { time.minute }
         </h2>
         <Reminder />

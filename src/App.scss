@@ -4,6 +4,10 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+
+  .time-dots {
+    animation: Dots-blink 1.05s infinite;
+  }
 }
 
 .App-header {
@@ -30,13 +34,17 @@
   b {
     color: #0d0f13;
   }
+
+  button {
+    background-color: transparent;
+    border: none;
+    margin: 12px;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes Dots-blink {
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  95% { opacity: 0; }
+  100% { opacity: 1; }
 }
