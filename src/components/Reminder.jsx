@@ -7,6 +7,7 @@ export default function Reminder() {
   const [meetingTitle, setMeetingTitle] = useState();
   const [meetingLink, setMeetingLink] = useState();
   const [warning, setWarning] = useState(false);
+  const TIMEOUT = 6000;
 
   const createMeeting = () => {
     const MEETING_DATA = {
@@ -19,6 +20,18 @@ export default function Reminder() {
     setMeetingTitle('');
     setMeetingTime('');
     setMeetingLink('');
+  };
+
+  const meetingContentVerifier = () => {
+    const TimeRegex = /\d{2}\s?:\s?\d{2}/;
+    const LinkRegex = /^https:\/\/.+\..+/;
+
+    if (!TimeRegex.test(meetingTime) || !LinkRegex.test(meetingLink)) {
+      setWarning(true);
+      return window.setTimeout(() => setWarning(false), TIMEOUT);
+    }
+
+    createMeeting();
   };
 
   return (
@@ -50,7 +63,7 @@ export default function Reminder() {
       />
       <hr />
       <br />
-      <button type="button" onClick={ createMeeting }>
+      <button type="button" onClick={ meetingContentVerifier }>
         { warning ? 'Dados Inválidos' : 'Programar Evento' }
       </button>
     </form>
