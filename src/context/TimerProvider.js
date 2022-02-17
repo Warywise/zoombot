@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import getTimeStringUnits from '../handlers/getTimeStringUnits';
 import TimerContext from './TimerContext';
 
 export default function TimerProvider({ children }) {
@@ -13,11 +14,10 @@ export default function TimerProvider({ children }) {
 
     const interval = () => {
       const getTime = new Date().toLocaleTimeString();
+      const timeStringUnits = getTimeStringUnits(getTime);
 
-      setTime(getTime);
+      setTime(timeStringUnits);
       intervalId = window.setTimeout(interval, TEN_SECONDS);
-
-      // console.log((getTime).match(/\d+/g), document.hidden);
     };
 
     interval();

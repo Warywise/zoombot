@@ -6,22 +6,7 @@ import TimerContext from './context/TimerContext';
 
 function App() {
   const { time, meetings } = useContext(TimerContext);
-  const timeContent = (time).match(/\d+/g) || [0, 0, 0];
-  const MAX_SECOND = 50;
-  const MAX_SECOND_HIDDEN = 29;
-  const MAX_MINUTE = 59;
-  let newTime;
 
-  if (document.hidden) {
-    newTime = +(timeContent[2]) >= MAX_SECOND_HIDDEN && +(timeContent[1]) < MAX_MINUTE
-      ? { hour: timeContent[0], minute: `${+(timeContent[1]) + 1}` }
-      : { hour: timeContent[0], minute: timeContent[1] };
-  } else {
-    newTime = +(timeContent[2]) >= MAX_SECOND && +(timeContent[1]) < MAX_MINUTE
-      ? { hour: timeContent[0], minute: `${+(timeContent[1]) + 1}` }
-      : { hour: timeContent[0], minute: timeContent[1] };
-  }
-  const MIN_MINUTE = 9;
   return (
     <main className="App">
       <header className="App-header">
@@ -29,9 +14,9 @@ function App() {
       </header>
       <section>
         <h2>
-          { newTime.hour }
+          { time.hour }
           <b>{' : '}</b>
-          { +(newTime.minute) > MIN_MINUTE ? newTime.minute : `0${+(newTime.minute)}` }
+          { time.minute }
         </h2>
         <Reminder />
       </section>
