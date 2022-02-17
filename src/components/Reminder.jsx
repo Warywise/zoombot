@@ -6,6 +6,7 @@ export default function Reminder() {
   const [meetingTime, setMeetingTime] = useState();
   const [meetingTitle, setMeetingTitle] = useState();
   const [meetingLink, setMeetingLink] = useState();
+  const [warning, setWarning] = useState(false);
 
   const createMeeting = () => {
     const MEETING_DATA = {
@@ -50,7 +51,7 @@ export default function Reminder() {
       <hr />
       <br />
       <button type="button" onClick={ createMeeting }>
-        Programar Evento
+        { warning ? 'Dados Inválidos' : 'Programar Evento' }
       </button>
     </form>
   );
