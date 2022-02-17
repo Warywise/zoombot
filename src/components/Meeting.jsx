@@ -1,22 +1,19 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
 
 export default function Meeting({ meetData: { time, title, link } }) {
-  const { time: currentTime, meetings, setMeetings,
-    checkedMeetings, setCheckedMeetings } = useContext(TimerContext);
+  const { time: currentTime, meetings, setMeetings } = useContext(TimerContext);
   const [condition, setCondition] = useState({ redirect: false, checked: false });
 
   const isMeetingChecked = () => {
     if (condition.checked) return false;
 
     const timeContent = (time).match(/\d+/g);
-    const currentTimeContent = (currentTime).match(/\d+/g);
 
-    const itsTime = currentTimeContent[0] === timeContent[0]
-      && currentTimeContent[1] === timeContent[1];
+    const itsTime = currentTime.hour === timeContent[0]
+      && currentTime.minute === timeContent[1];
 
     if (itsTime) return true;
     return false;
