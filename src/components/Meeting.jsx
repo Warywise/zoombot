@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaWindowClose } from 'react-icons/fa';
+import { FaWindowClose, FaEdit } from 'react-icons/fa';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
 
@@ -56,8 +56,11 @@ export default function Meeting({ meetData: { time, title, link } }) {
         setMeetings={ setMeetings }
         time={ time }
       />
-      <button type="button" onClick={ deleteMeeting } className="delete-btn">
-        <FaWindowClose className="delete-btn" size="1.5em" color="red" />
+      <button type="button" onClick={ deleteMeeting } className="meeting-btn delete-btn">
+        <FaWindowClose className="meeting-icon" size="1.5em" color="red" />
+      </button>
+      <button type="button" onClick={ deleteMeeting } className="meeting-btn edit-btn">
+        <FaEdit className="meeting-icon" size="1.5em" color="green" />
       </button>
     </div>
   );

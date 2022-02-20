@@ -1,3 +1,10 @@
+@mixin BoxShadow($shadow: #282c34ce) {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0.35px 0.35px 3px 0.15px $shadow;
+  color: #1a1a1b;
+}
+
 .App {
   align-items: center;
   display: flex;
@@ -23,9 +30,8 @@
 }
 
 .meeting {
-  border-radius: 12px;
-  box-shadow: 0 0 1px #282c34;
-  color: #1a1a1b;
+  @include BoxShadow;
+  background-color: #282c340a;
   contain: content;
   font-size: large;
   letter-spacing: 0.5px;
@@ -38,12 +44,24 @@
     color: #0d0f13;
   }
 
-  .delete-btn {
+  .meeting-btn {
     background-color: transparent;
     border: none;
     position: absolute;
+  }
+
+  .delete-btn {
     right: 8px;
     top: 8px;
+  }
+
+  .edit-btn {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .meeting-icon {
+    box-shadow: 2px 1.5px 5px #282c343a;
   }
 }
 
