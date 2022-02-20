@@ -8,7 +8,8 @@ export default function TimerProvider({ children }) {
   const [meetings, setMeetings] = useState(
     [{ time: '19:45', title: 'Cinema', link: 'https://google.com' }],
   );
-  const [checkedMeetings, setCheckedMeetings] = useState([]);
+  const [meetingToEdit, setMeetingToEdit] = useState(null);
+  // const [checkedMeetings, setCheckedMeetings] = useState([]);
 
   useEffect(() => {
     const TEN_SECONDS = 10000;
@@ -31,8 +32,10 @@ export default function TimerProvider({ children }) {
     time,
     meetings,
     setMeetings,
-    checkedMeetings,
-    setCheckedMeetings,
+    meetingToEdit,
+    setMeetingToEdit,
+    // checkedMeetings,
+    // setCheckedMeetings,
   };
 
   return (

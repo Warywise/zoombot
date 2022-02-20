@@ -6,7 +6,8 @@ import Redirector from './Redirector';
 import '../styles/meeting.scss';
 
 export default function Meeting({ meetData: { time, title, link } }) {
-  const { time: currentTime, meetings, setMeetings } = useContext(TimerContext);
+  const { time: currentTime, meetings, setMeetings,
+    setMeetingToEdit } = useContext(TimerContext);
   const [condition, setCondition] = useState({ redirect: false, checked: false });
 
   const isMeetingChecked = () => {
@@ -23,6 +24,10 @@ export default function Meeting({ meetData: { time, title, link } }) {
   const deleteMeeting = () => {
     const newMeetingsArray = [...meetings].filter((meet) => meet.time !== time);
     setMeetings(newMeetingsArray);
+  };
+
+  const editMeeting = () => {
+    setMeetingToEdit({ time, title, link });
   };
 
   useEffect(() => {
@@ -60,7 +65,7 @@ export default function Meeting({ meetData: { time, title, link } }) {
       <button type="button" onClick={ deleteMeeting } className="meeting-btn delete-btn">
         <FaWindowClose className="meeting-icon" size="1.5em" color="red" />
       </button>
-      <button type="button" onClick={ deleteMeeting } className="meeting-btn edit-btn">
+      <button type="button" onClick={ editMeeting } className="meeting-btn edit-btn">
         <FaEdit className="meeting-icon" size="1.5em" color="green" />
       </button>
     </div>
