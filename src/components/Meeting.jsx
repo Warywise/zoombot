@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FaWindowClose, FaEdit } from 'react-icons/fa';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
+import '../styles/meeting.scss';
 
 export default function Meeting({ meetData: { time, title, link } }) {
   const { time: currentTime, meetings, setMeetings } = useContext(TimerContext);

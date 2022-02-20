@@ -1,0 +1,42 @@
+@use "App";
+
+.meeting {
+  @include App.deafultBoxShadow;
+  background-color: #282c340a;
+  contain: content;
+  font-size: large;
+  letter-spacing: 0.5px;
+  margin: 8px 0;
+  max-width: calc(30vw + 5vmin);
+  padding: 0.5em 2em 0.5em 1em;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.01);
+    transition: transform 0.05s;
+  }
+
+  b {
+    color: #0d0f13;
+  }
+
+  .meeting-btn {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+  }
+
+    .meeting-icon {
+      box-shadow: 2px 1.5px 5px #282c343a;
+    }
+
+  .delete-btn {
+    right: 8px;
+    top: 8px;
+  }
+
+  .edit-btn {
+    right: 8px;
+    bottom: 8px;
+  }
+}

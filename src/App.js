@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './App.scss';
+import './styles/_App.scss';
 import Meeting from './components/Meeting';
 import Reminder from './components/Reminder';
 import TimerContext from './context/TimerContext';
