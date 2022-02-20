@@ -23,22 +23,27 @@
 }
 
 .meeting {
-  border: solid thin #282c34;
+  border-radius: 12px;
+  box-shadow: 0 0 1px #282c34;
   color: #1a1a1b;
+  contain: content;
   font-size: large;
   letter-spacing: 0.5px;
   margin: 8px 0;
   max-width: calc(30vw + 3vmin);
-  padding: 5px 8px;
+  padding: 0.5em 2em 0.5em 1em;
+  position: relative;
 
   b {
     color: #0d0f13;
   }
 
-  button {
+  .delete-btn {
     background-color: transparent;
     border: none;
-    margin: 12px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
   }
 }
 

@@ -56,7 +56,7 @@ export default function Meeting({ meetData: { time, title, link } }) {
         setMeetings={ setMeetings }
         time={ time }
       />
-      <button type="button" onClick={ deleteMeeting }>
+      <button type="button" onClick={ deleteMeeting } className="delete-btn">
         <FaWindowClose className="delete-btn" size="1.5em" color="red" />
       </button>
     </div>

@@ -5,7 +5,9 @@ import TimerContext from './TimerContext';
 
 export default function TimerProvider({ children }) {
   const [time, setTime] = useState('');
-  const [meetings, setMeetings] = useState([]);
+  const [meetings, setMeetings] = useState(
+    [{ time: '19:45', title: 'Cinema', link: 'https://google.com' }],
+  );
   const [checkedMeetings, setCheckedMeetings] = useState([]);
 
   useEffect(() => {
