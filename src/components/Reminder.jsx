@@ -70,6 +70,12 @@ export default function Reminder() {
       setMeetingTitle(title);
       setMeetingLink(link);
     }
+
+    if (!meetingToEdit && meetingTime !== '') {
+      setMeetingTitle('');
+      setMeetingTime('');
+      setMeetingLink('');
+    }
   }, [meetingToEdit]);
 
   return (

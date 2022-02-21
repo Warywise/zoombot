@@ -7,7 +7,7 @@ import '../styles/meeting.scss';
 
 export default function Meeting({ meetData: { time, title, link } }) {
   const { time: currentTime, meetings, setMeetings,
-    setMeetingToEdit } = useContext(TimerContext);
+    meetingToEdit, setMeetingToEdit } = useContext(TimerContext);
   const [condition, setCondition] = useState({ redirect: false, checked: false });
 
   const isMeetingChecked = () => {
@@ -27,6 +27,8 @@ export default function Meeting({ meetData: { time, title, link } }) {
   };
 
   const editMeeting = () => {
+    if (meetingToEdit) return setMeetingToEdit(null);
+
     setMeetingToEdit({ time, title, link });
   };
 
@@ -37,7 +39,7 @@ export default function Meeting({ meetData: { time, title, link } }) {
   }, [currentTime]);
 
   return (
-    <div className="meeting">
+    <div className={ `meeting ${meetingToEdit?.time === time ? 'editing' : ''}` }>
       { title
         ? (
           <p>
