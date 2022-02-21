@@ -6,14 +6,14 @@
   contain: content;
   font-size: large;
   letter-spacing: 0.5px;
-  margin: 8px 0;
+  margin: 1em 0;
   max-width: calc(30vw + 5vmin);
   padding: 0.5em 2em 0.5em 1em;
   position: relative;
+  transition: 0.075s;
 
   &:hover {
     transform: scale(1.01);
-    transition: transform 0.05s;
   }
 
   b {
