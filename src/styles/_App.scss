@@ -1,4 +1,4 @@
-@mixin deafultBoxShadow($shadow: #282c34ce) {
+@mixin defaultBoxShadow($shadow: #282c34ce) {
   border: none;
   border-radius: 12px;
   box-shadow: 0.35px 0.35px 3px 0.15px $shadow;

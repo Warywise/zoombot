@@ -1,7 +1,7 @@
 @use "App";
 
 .meeting {
-  @include App.deafultBoxShadow;
+  @include App.defaultBoxShadow;
   background-color: #282c340a;
   contain: content;
   font-size: large;

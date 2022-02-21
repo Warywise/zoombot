@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TimerContext from '../context/TimerContext';
+import '../styles/reminder.scss';
 
 export default function Reminder() {
   const { meetings, setMeetings,
