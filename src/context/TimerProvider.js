@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import getTimeStringUnits from '../handlers/getTimeStringUnits';
 import TimerContext from './TimerContext';
 
+// const defaultTestMeeting = { time: '19:45', title: 'Cinema', link: 'https://google.com' };
+
 export default function TimerProvider({ children }) {
   const [time, setTime] = useState('');
-  const [meetings, setMeetings] = useState(
-    [{ time: '19:45', title: 'Cinema', link: 'https://google.com' }],
-  );
+  const [meetings, setMeetings] = useState([]);
   const [meetingToEdit, setMeetingToEdit] = useState(null);
   // const [checkedMeetings, setCheckedMeetings] = useState([]);
 

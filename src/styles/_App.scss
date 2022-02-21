@@ -12,6 +12,13 @@
   justify-content: center;
   text-align: center;
 
+  section h2 {
+    @include defaultBoxShadow;
+    margin: 0.5em auto;
+    padding: 5px 0;
+    width: 50%;
+  }
+
   .time-dots {
     animation: Dots-blink 1.05s infinite;
   }
@@ -20,12 +27,15 @@
 .App-header {
   align-items: center;
   background-color: #282c34;
+  box-shadow: 0 0.5px 1px 1px #1a1a1b;
   color: white;
   display: flex;
   font-size: calc(1em + 2vmin);
+  font-weight: 600;
   justify-content: center;
   min-height: 8vh;
   padding: 0.5em;
+  text-shadow: 0.5px 0.8px 3px #1a1a1a, 1px 1px 1px #adb2bb;
   top: 0;
   width: 100%;
 }
