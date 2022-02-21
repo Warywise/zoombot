@@ -1,8 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import TimerContext from '../context/TimerContext';
+import '../styles/reminder.scss';
 
 export default function Reminder() {
-  const { meetings, setMeetings } = useContext(TimerContext);
+  const { meetings, setMeetings,
+    meetingToEdit, setMeetingToEdit } = useContext(TimerContext);
   const [meetingTime, setMeetingTime] = useState();
   const [meetingTitle, setMeetingTitle] = useState();
   const [meetingLink, setMeetingLink] = useState();
@@ -22,6 +24,27 @@ export default function Reminder() {
     setMeetingLink('');
   };
 
+  const editMeeting = () => {
+    const MEETING_DATA = {
+      time: meetingTime,
+      title: meetingTitle,
+      link: meetingLink,
+    };
+
+    const meetingIndex = meetings.findIndex(({ time }) => time === meetingToEdit.time);
+    const newMeetingsArray = [...meetings];
+
+    if (meetingIndex < 0) {
+      newMeetingsArray.push(MEETING_DATA);
+    } else newMeetingsArray.splice(meetingIndex, 1, MEETING_DATA);
+
+    setMeetings(newMeetingsArray);
+    setMeetingToEdit(null);
+    setMeetingTitle('');
+    setMeetingTime('');
+    setMeetingLink('');
+  };
+
   const meetingContentVerifier = () => {
     const TimeRegex = /\d{2}\s?:\s?\d{2}/;
     const LinkRegex = /^https:\/\/.+\..+/;
@@ -31,8 +54,30 @@ export default function Reminder() {
       return window.setTimeout(() => setWarning(false), TIMEOUT);
     }
 
-    createMeeting();
+    if (meetingToEdit) {
+      editMeeting();
+    } else createMeeting();
   };
+
+  const changeButton = (warn, edit) => {
+    if (warn) return 'Dados Inválidos';
+    return edit ? 'Salvar Alterações' : 'Programar Evento';
+  };
+
+  useEffect(() => {
+    if (meetingToEdit) {
+      const { time, title, link } = meetingToEdit;
+      setMeetingTime(time);
+      setMeetingTitle(title);
+      setMeetingLink(link);
+    }
+
+    if (!meetingToEdit && meetingTime !== '') {
+      setMeetingTitle('');
+      setMeetingTime('');
+      setMeetingLink('');
+    }
+  }, [meetingToEdit]);
 
   return (
     <form className="meeting-box">
@@ -64,7 +109,7 @@ export default function Reminder() {
       <hr />
       <br />
       <button type="button" onClick={ meetingContentVerifier }>
-        { warning ? 'Dados Inválidos' : 'Programar Evento' }
+        { changeButton(warning, meetingToEdit) }
       </button>
     </form>
   );

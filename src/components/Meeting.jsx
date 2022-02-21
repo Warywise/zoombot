@@ -1,22 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FaWindowClose, FaEdit } from 'react-icons/fa';
 import TimerContext from '../context/TimerContext';
 import Redirector from './Redirector';
+import '../styles/meeting.scss';
 
 export default function Meeting({ meetData: { time, title, link } }) {
-  const { time: currentTime, meetings, setMeetings } = useContext(TimerContext);
+  const { time: currentTime, meetings, setMeetings,
+    meetingToEdit, setMeetingToEdit } = useContext(TimerContext);
   const [condition, setCondition] = useState({ redirect: false, checked: false });
 
   const isMeetingChecked = () => {
     if (condition.checked) return false;
 
     const timeContent = (time).match(/\d+/g);
-
     const itsTime = currentTime.hour === timeContent[0]
       && currentTime.minute === timeContent[1];
 
     if (itsTime) return true;
     return false;
+  };
+
+  const deleteMeeting = () => {
+    const newMeetingsArray = [...meetings].filter((meet) => meet.time !== time);
+    setMeetings(newMeetingsArray);
+  };
+
+  const editMeeting = () => {
+    if (meetingToEdit) return setMeetingToEdit(null);
+
+    setMeetingToEdit({ time, title, link });
   };
 
   useEffect(() => {
@@ -26,7 +39,7 @@ export default function Meeting({ meetData: { time, title, link } }) {
   }, [currentTime]);
 
   return (
-    <div className="meeting">
+    <div className={ `meeting ${meetingToEdit?.time === time ? 'editing' : ''}` }>
       { title
         ? (
           <p>
@@ -51,6 +64,12 @@ export default function Meeting({ meetData: { time, title, link } }) {
         setMeetings={ setMeetings }
         time={ time }
       />
+      <button type="button" onClick={ deleteMeeting } className="meeting-btn delete-btn">
+        <FaWindowClose className="meeting-icon" size="1.5em" color="red" />
+      </button>
+      <button type="button" onClick={ editMeeting } className="meeting-btn edit-btn">
+        <FaEdit className="meeting-icon" size="1.5em" color="green" />
+      </button>
     </div>
   );
 }

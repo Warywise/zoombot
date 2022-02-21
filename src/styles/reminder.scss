@@ -1,0 +1,41 @@
+@use 'App';
+
+.meeting-box {
+  @include App.defaultBoxShadow;
+  background-color: rgba(185, 190, 194, 0.85);
+  font-size: 1.1em;
+  margin: 0.5em;
+  padding: 1em;
+
+  hr {
+    margin-top: 3px;
+  }
+
+  input, button {
+    border: solid thin #282c34ce;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+
+  input {
+    &:focus {
+      outline: none;
+    }
+
+    padding: 3px 5px;
+  }
+
+
+  button {
+    &:hover {
+      box-shadow: 0.3px 0.3px 1px #282c34ce;
+      transform: scale(1.01);
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+
+    padding: 5px 8px;
+  }
+}

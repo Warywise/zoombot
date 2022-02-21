@@ -1,0 +1,48 @@
+@mixin defaultBoxShadow($shadow: #282c34ce) {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0.35px 0.35px 3px 0.15px $shadow;
+  color: #1a1a1b;
+}
+
+.App {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  section h2 {
+    @include defaultBoxShadow;
+    margin: 0.5em auto;
+    padding: 5px 0;
+    width: 50%;
+  }
+
+  .time-dots {
+    animation: Dots-blink 1.05s infinite;
+  }
+}
+
+.App-header {
+  align-items: center;
+  background-color: #282c34;
+  box-shadow: 0 0.5px 1px 1px #1a1a1b;
+  color: white;
+  display: flex;
+  font-size: calc(1em + 2vmin);
+  font-weight: 600;
+  justify-content: center;
+  min-height: 8vh;
+  padding: 0.5em;
+  text-shadow: 0.5px 0.8px 3px #1a1a1a, 1px 1px 1px #adb2bb;
+  top: 0;
+  width: 100%;
+}
+
+@keyframes Dots-blink {
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  95% { opacity: 0; }
+  100% { opacity: 1; }
+}
